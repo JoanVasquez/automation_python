@@ -6,6 +6,12 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 
+def clean_text(text):
+  """Extract only the temperature from text"""
+  output = float(text.split(": ")[1])
+  return output
+
+
 def get_driver():
   """
     Configures and returns a Chrome WebDriver instance with custom options.
@@ -64,8 +70,10 @@ def main():
   # Locate a clickable element (e.g., a navigation link) using its XPath and click on it.
   driver.find_element(by="xpath", value="/html/body/nav/div/a").click()
 
-  # Print the current URL of the browser to confirm navigation.
-  print(driver.current_url)
+  time.sleep(2)
+  text = driver.find_element(by="xpath",
+                             value="/html/body/div[1]/div/h1[2]").text
+  return clean_text(text)
 
 
 # Execute the main function and print its return value (which is None in this case).
