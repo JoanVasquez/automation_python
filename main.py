@@ -1,1 +1,2 @@
-import automation_selenium.main_selenium
+import automation_selenium.initial_selenium
+import automation_selenium.login_automation
